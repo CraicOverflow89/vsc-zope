@@ -1,7 +1,7 @@
 Zope Extension
 ==============
 
-Adds extra functionality to a workspace when developing Zope applications in Visual Studio Code.
+Adds extra functionality to Visual Studio Code when developing Zope applications.
 
 ### Tasks
 
