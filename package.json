@@ -1,0 +1,70 @@
+{
+	"name": "zope",
+	"displayName": "Zope",
+	"description": "Adds extra functionality to a workspace when developing Zope applications.",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.46.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:zope.helloWorld"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "zope.helloWorld",
+				"title": "Hello World"
+			}
+		],
+		"views": {
+			"zope-explorer": [
+				{
+					"id": "zope-view",
+					"name": "",
+					"icon": "media/icons/logo.png",
+					"contextualTitle": "Something Contextual"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "zope-explorer",
+					"title": "Zope",
+					"icon": "media/icons/logo.png"
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "zope-view",
+				"contents": "There is currently no configuration available for this extension."
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.46.0",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"eslint": "^6.8.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.2",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	}
+}
