@@ -25,8 +25,7 @@
 				{
 					"id": "zope-view",
 					"name": "",
-					"icon": "media/icons/logo.png",
-					"contextualTitle": "Something Contextual"
+					"icon": "media/icons/logo.png"
 				}
 			]
 		},
@@ -42,7 +41,28 @@
 		"viewsWelcome": [
 			{
 				"view": "zope-view",
-				"contents": "There is currently no configuration available for this extension."
+				"contents": "%view.workbench.zope-view.empty%",
+				"when": "workbenchState == empty"
+			},
+			{
+				"view": "zope-view",
+				"contents": "%view.workbench.zope-view.unregistered-folder%",
+				"when": "workbenchState == folder"
+			},
+			{
+				"view": "zope-view",
+				"contents": "%view.workbench.zope-view.unregistered-workspace%",
+				"when": "workbenchState == workspace && workspaceFolderCount != 0"
+			},
+			{
+				"view": "zope-view",
+				"contents": "%view.workbench.zope-view.unregistered-workspace-empty%",
+				"when": "workbenchState == workspace && workspaceFolderCount == 0"
+			},
+			{
+				"view": "zope-view",
+				"contents": "%view.workbench.zope-view.config%",
+				"when": "false"
 			}
 		]
 	},
