@@ -1,7 +1,7 @@
 {
     "view.workbench.zope-view.config": "There is currently no configuration available for this extension.",
     "view.workbench.zope-view.empty": "In order to use the extension features, you can open a folder containing a Zope project.\n[Open Folder](command:vscode.openFolder)",
-    "view.workbench.zope-view.unregistered-folder": "The folder currently open isn't marked as a Zope project.\n[Register Project](command:zope.helloWorld)",
-    "view.workbench.zope-view.unregistered-workspace": "The workspace currently open doesn't have any folders marked as a Zope project.\n[Register Project](command:zope.helloWorld)",
+    "view.workbench.zope-view.unregistered-folder": "The folder currently open isn't marked as a Zope project.\n[Register Project](command:zope.register)",
+    "view.workbench.zope-view.unregistered-workspace": "The workspace currently open doesn't have any folders marked as a Zope project.\n[Register Project](command:zope.register)",
     "view.workbench.zope-view.unregistered-workspace-empty": "The workspace currently open doesn't have any folders marked as a Zope project.\n[Add Folder to Workspace](command:workbench.action.addRootFolder)"
 }

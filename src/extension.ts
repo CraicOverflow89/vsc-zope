@@ -1,27 +1,28 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import { commands, ExtensionContext, window } from 'vscode';
+import { Project } from './project';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "zope" is now active!');
+	// TEMP DEBUG
+	console.log('Zope Extension is now active.');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('zope.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
+	// TEST REGISTERED
+	console.log(`workspace is registered: ${Project.exists(context)}`)
+	// NOTE: need to make this accessible to the viewsWelcome when conditions
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Zope!');
-	});
+	// TEST PROJECT
+	let project = Project.exists(context) ? new Project(context) : null;
+	// NOTE: will need to create project initially and also change each time the workspace changes
+	if(project != null) console.log(`data = ${project.toString()}`);
 
-	context.subscriptions.push(disposable);
+	// PLACEHOLDER COMMAND
+	context.subscriptions.push(commands.registerCommand('zope.register', () => {
+		if(project != null) return;
+		window.showInformationMessage('Registered this directory as a Zope project!');
+		console.log('Project registered');
+		project = Project.create(context);
+		console.log(`data = ${project.toString()}`);
+	}));
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}

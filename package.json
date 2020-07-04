@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:zope.helloWorld"
+		"onCommand:zope.register"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "zope.helloWorld",
-				"title": "Hello World"
+				"command": "zope.register",
+				"title": "Register Project"
 			}
 		],
 		"views": {
