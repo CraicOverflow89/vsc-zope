@@ -17,8 +17,10 @@ export function activate(context: ExtensionContext) {
 
 	// Command: Register
 	context.subscriptions.push(commands.registerCommand('zope.register', () => {
-		if(project != null) return;
-		// NOTE: might want to issue warning that this directory is already registered
+		if(project != null) {
+			window.showErrorMessage('This directory has already been registered as a Zope project!')
+			return;
+		}
 		window.showInformationMessage('Registered this directory as a Zope project!');
 		console.log('Project registered');
 		project = Project.create(context);
@@ -27,8 +29,11 @@ export function activate(context: ExtensionContext) {
 
 	// Command: Lookup
 	context.subscriptions.push(commands.registerCommand('zope.lookup', () => {
-		if(project == null) return;
-		// NOTE: might want to issue warning that command will not work outside of zope project
+		if(project == null) {
+			window.showErrorMessage('The folder currently open isn\'t marked as a Zope project.\n[Register Project](command:zope.register)')
+			// NOTE: could make use of %view.workbench.zope-view.unregistered-folder%
+			return;
+		}
 		console.log('Lookup routine');
 		// NOTE: need to operate this on current selection
 		//       could be appended to existing Peek Definition stuff or done separately?
