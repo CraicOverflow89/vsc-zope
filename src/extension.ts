@@ -28,6 +28,7 @@ export function activate(context: ExtensionContext) {
 		window.showInformationMessage('Registered this directory as a Zope project!');
 		console.log('Project registered');
 		project = Project.create(context);
+		commands.executeCommand('setContext', 'zope-active', true);
 		console.log(`data = ${project.toString()}`);
 	}));
 
