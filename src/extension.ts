@@ -15,6 +15,10 @@ export function activate(context: ExtensionContext) {
 	// NOTE: will need to create project initially and also change each time the workspace changes
 	if(project != null) console.log(`data = ${project.toString()}`);
 
+	// Active Status
+	commands.executeCommand('setContext', 'zope-active', project != null);
+	// NOTE: this seems too late (but it's not saying it doesn't exist at all) when it checks :/
+
 	// Command: Register
 	context.subscriptions.push(commands.registerCommand('zope.register', () => {
 		if(project != null) {

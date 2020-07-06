@@ -14,4 +14,4 @@ Adds extra functionality to Visual Studio Code when developing Zope applications
 
 ### Issues
 
- - need to access is project logic in the viewsWelcome section
+ - looks like `zope-active` context value is currently being set later than `viewsWelcome` is checking it

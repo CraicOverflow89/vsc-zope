@@ -46,28 +46,28 @@
 		"viewsWelcome": [
 			{
 				"view": "zope-view",
+				"contents": "%view.workbench.zope-view.config%",
+				"when": "zope-active == true"
+			},
+			{
+				"view": "zope-view",
 				"contents": "%view.workbench.zope-view.empty%",
-				"when": "workbenchState == empty"
+				"when": "zope-active == false && workbenchState == empty"
 			},
 			{
 				"view": "zope-view",
 				"contents": "%view.workbench.zope-view.unregistered-folder%",
-				"when": "workbenchState == folder"
+				"when": "zope-active == false && workbenchState == folder"
 			},
 			{
 				"view": "zope-view",
 				"contents": "%view.workbench.zope-view.unregistered-workspace%",
-				"when": "workbenchState == workspace && workspaceFolderCount != 0"
+				"when": "zope-active == false && workbenchState == workspace && workspaceFolderCount != 0"
 			},
 			{
 				"view": "zope-view",
 				"contents": "%view.workbench.zope-view.unregistered-workspace-empty%",
-				"when": "workbenchState == workspace && workspaceFolderCount == 0"
-			},
-			{
-				"view": "zope-view",
-				"contents": "%view.workbench.zope-view.config%",
-				"when": "false"
+				"when": "zope-active == false && workbenchState == workspace && workspaceFolderCount == 0"
 			}
 		]
 	},
