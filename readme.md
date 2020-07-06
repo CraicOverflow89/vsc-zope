@@ -10,3 +10,4 @@ Adds extra functionality to Visual Studio Code when developing Zope applications
  - recognise sql files (if possible - might need to register these in a cache of choices?)
  - import the dtml language description (will need to be set for files with no extension)
  - test registration of directory when using workspaces
+ - add command to determine where file is in hierachy when using references that look them up
