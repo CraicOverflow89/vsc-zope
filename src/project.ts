@@ -26,6 +26,7 @@ export class Project {
         if(typeof data == "string") {
             this.data = JSON.parse(data) as ProjectData
         }
+        // NOTE: need to report corrupt data if doesn't fit ProjectData
     }
 
     save(): void {

@@ -1,10 +1,15 @@
 import { commands, ExtensionContext, window } from 'vscode';
+//import * as nls from 'vscode-nls';
 import { Project } from './project';
 
 export function activate(context: ExtensionContext) {
 
 	// TEMP DEBUG
 	console.log('Zope Extension is now active.');
+
+	// TEST NLS
+	//let localize = nls.config({locale: 'en-GB'})();
+	// NOTE: using vscode-nls-dev package but not too much deocumentation for how to get this working
 
 	// TEST REGISTERED
 	console.log(`workspace is registered: ${Project.exists(context)}`)
@@ -36,6 +41,7 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(commands.registerCommand('zope.lookup', () => {
 		if(project == null) {
 			window.showErrorMessage('The folder currently open isn\'t marked as a Zope project.\n[Register Project](command:zope.register)')
+			//window.showErrorMessage(localize('%view.workbench.zope-view.unregistered-folder%', '??'))
 			// NOTE: could make use of %view.workbench.zope-view.unregistered-folder%
 			return;
 		}
