@@ -1,5 +1,6 @@
-import { commands, ExtensionContext, window } from 'vscode';
+import { commands, ExtensionContext, window, languages } from 'vscode';
 //import * as nls from 'vscode-nls';
+import { LookupProvider } from './lookup';
 import { Project } from './project';
 
 export function activate(context: ExtensionContext) {
@@ -49,6 +50,9 @@ export function activate(context: ExtensionContext) {
 		// NOTE: need to operate this on current selection
 		//       could be appended to existing Peek Definition stuff or done separately?
 	}));
+
+	// Definition: Lookup
+	languages.registerDefinitionProvider({scheme: 'file', language: 'typescript'}, new LookupProvider());
 }
 
 export function deactivate() {}
