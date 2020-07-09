@@ -5,6 +5,8 @@ import { Project } from './project'
 
 export function activate(context: ExtensionContext) {
 
+	// NOTE: will need to re-run a lot of this each time the workspace changes
+
 	// TEMP DEBUG
 	console.log('Zope Extension is now active.')
 
@@ -52,7 +54,8 @@ export function activate(context: ExtensionContext) {
 	}))
 
 	// Definition: Lookup
-	languages.registerDefinitionProvider({scheme: 'file', language: 'typescript'}, new LookupProvider())
+	languages.registerDefinitionProvider({scheme: 'file', language: 'plaintext'}, new LookupProvider())
+	// NOTE: will language need to be changed to dtml (if recognition does this automatically)?
 
 	// Listener: Document Change
 	window.onDidChangeVisibleTextEditors((editorList: TextEditor[]) => {
