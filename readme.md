@@ -17,7 +17,7 @@ Please do! PRs welcome at the [github repo](https://github.com/CraicOverflow89/v
 
 ### Tasks
 
- - update the tree view with config options (probably just show a button to start using extension in this directory - remember this in VSC general user data?)
+ - maintain the tree view with project files organised around type
  - recognise python files (without extension) and set file type automatically for those documents
     - first line starts with "## Script (Python)"
  - recognise sql files (if possible - might need to register these in a cache of choices?)
