@@ -62,11 +62,9 @@ export function activate(context: ExtensionContext) {
 		editorList.forEach((it: TextEditor) => {
 			const doc = it.document
 			// NOTE: need to exit early if this is not a new document
-			if(doc.isUntitled || !doc.lineCount || doc.languageId != "plaintext") return;
+			if(doc.isUntitled || !doc.lineCount || doc.languageId != 'plaintext') return;
 			if(doc.lineAt(0).text.startsWith("## Script (Python)")) {
-				console.log("this document is a Python script!!")
-				//doc.languageId = "python"
-				// NOTE: this is read-only
+				languages.setTextDocumentLanguage(doc, 'python')
 			}
 		})
 	})
