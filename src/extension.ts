@@ -63,8 +63,16 @@ export function activate(context: ExtensionContext) {
 			const doc = it.document
 			// NOTE: need to exit early if this is not a new document
 			if(doc.isUntitled || !doc.lineCount || doc.languageId != 'plaintext') return;
-			if(doc.lineAt(0).text.startsWith("## Script (Python)")) {
+			const firstLine = doc.lineAt(0).text
+
+			// Detect Python
+			if(firstLine.startsWith("## Script (Python)")) {
 				languages.setTextDocumentLanguage(doc, 'python')
+			}
+
+			// Detect SQL
+			else if(firstLine.startsWith("<params>")) {
+				languages.setTextDocumentLanguage(doc, 'sql')
 			}
 		})
 	})
