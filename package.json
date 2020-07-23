@@ -3,6 +3,17 @@
 	"displayName": "Zope",
 	"description": "Adds extra functionality to a workspace when developing Zope applications.",
 	"version": "0.0.1",
+	"license": "MIT",
+	"bugs": {
+	  "url": "https://github.com/CraicOverflow89/vsc-zope/issues"
+	},
+	"homepage": "https://github.com/CraicOverflow89/vsc-zope",
+	"repository": {
+	  "type": "git",
+	  "url": "https://github.com/CraicOverflow89/vsc-zope"
+	},
+	"publisher": "CraicOverflow89",
+	"icon": "media/icons/logo.png",
 	"engines": {
 		"vscode": "^1.46.0"
 	},
