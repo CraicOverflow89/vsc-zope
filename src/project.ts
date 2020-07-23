@@ -72,19 +72,10 @@ export class Project {
             console.error('Corrupt workspace data.', value)
             return false
         }
-        if(typeof data != "string") return invalidData(data)
-
-        // Parse Data
-        try {
-            const dataParsed = JSON.parse(data)
-            // TODO: check if path matches what was passed into constructor?
-            //       handle/report corrupt data
-        }
-
-        // Invalid Data
-        catch(ex) {
-            return invalidData(ex)
-        }
+        if(typeof data != "object") return invalidData(data)
+        // TODO: validate object contents
+        //       assign values to properties
+        //       throw if path is not same as value passed to constructor?
 
         // Report Success
         return true
@@ -106,10 +97,6 @@ export class Project {
      * @returns void
      */
     private saveData(): void {
-
-        // Debug
-        console.log('Project.saveData')
-
         Project.context.workspaceState.update(Project.storeKey, this.getData())
     }
 

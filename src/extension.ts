@@ -8,10 +8,16 @@ export function activate(context: ExtensionContext) {
 	// Debug
 	console.log('Zope Extension is now active.')
 
+	// Context Status
+	const contextUpdate = (isActive: boolean) => {
+		commands.executeCommand('setContext', 'zope-active', isActive)
+	}
+
 	// Initialise Project
 	Project.init(context)
 
 	// NOTE: this needs to happen on workspace change
+	//       although this whole activate method IS being called again on workspace change
 	const project = Project.load('')
 	// NOTE: need to pass current directory
 
@@ -20,7 +26,7 @@ export function activate(context: ExtensionContext) {
 	console.log(`data = ${project.toString()}`)
 
 	// Active Status
-	commands.executeCommand('setContext', 'zope-active', project != null)
+	contextUpdate(project.exists())
 
 	// Command: Register
 	context.subscriptions.push(commands.registerCommand('zope.register', () => {
@@ -33,7 +39,7 @@ export function activate(context: ExtensionContext) {
 
 		// Register Project
 		project.register()
-		commands.executeCommand('setContext', 'zope-active', true)
+		contextUpdate(true)
 		window.showInformationMessage('Registered this directory as a Zope project!')
 
 		// Debug
