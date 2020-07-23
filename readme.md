@@ -25,6 +25,7 @@ Please do! PRs welcome at the [github repo](https://github.com/CraicOverflow89/v
  - add command to determine where file is in hierachy when using references that look them up
     - continue work with the `LookupProvider` that points to result when _peek definition_ is used
  - look into how developing this around version 2 will work (major differences with later versions?)
+ - look into changing the activation event to [onView](https://code.visualstudio.com/api/references/activation-events#onView)
 
 ### Issues
 
