@@ -9,7 +9,7 @@ The extension does **absolutely nothing** unless you explicitly tell it to. Ther
 
 You can register a directory on your file system as a zope project using the _Register Project_ button and then VSC will remember to activate the plugin whenever you work in that folder.
 
-No changes to files are ever made. The extension simply offers tailored ways to navigate your project, automatically sets language types when no extensions are present and allows you to follow references to other files, when using peek definition and via the lookup command.
+No changes to files are ever made. The extension simply offers tailored ways to navigate your project, automatically sets language types for files without extensions and allows you to follow references to other files, when using peek definition and via the lookup command.
 
 ### Contributing
 
