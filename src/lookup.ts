@@ -1,7 +1,9 @@
-import { CancellationToken, Definition, DefinitionLink, DefinitionProvider, Location, Position, ProviderResult, Range, TextDocument, Uri as URI, workspace, window, TextEditorCursorStyle } from 'vscode';
+import { CancellationToken, Definition, DefinitionLink, DefinitionProvider, Location, Position, ProviderResult, Range, TextDocument, Uri as URI, workspace, window, TextEditorCursorStyle } from 'vscode'
 
+// TODO: annotations
 export class LookupProvider implements DefinitionProvider {
 
+    // TODO: annotations
     provideDefinition(document: TextDocument, position: Position, token: CancellationToken): ProviderResult<Definition | DefinitionLink[]> {
 
         // TEMP DEBUG
@@ -13,7 +15,9 @@ export class LookupProvider implements DefinitionProvider {
             //console.log(` position range is {end: ${debugPosition(range.end)}, start: ${debugPosition(range.start)}}`)
             return document.lineAt(position.line).text.substr(range.start.character, range.end.character - range.start.character)
         })()
-        if(!lookup) return;
+        if(!lookup) return
+
+        // Debug
         console.log(` lookup is '${lookup}'`)
 
         // TEMP RETURN

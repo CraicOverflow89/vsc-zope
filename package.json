@@ -22,7 +22,8 @@
 	],
 	"activationEvents": [
 		"onCommand:zope.lookup",
-		"onCommand:zope.register"
+		"onCommand:zope.register",
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"contributes": {

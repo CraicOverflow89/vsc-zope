@@ -1,53 +1,56 @@
 import { commands, ExtensionContext, languages, TextEditor, window } from 'vscode'
-//import * as nls from 'vscode-nls'
 import { LookupProvider } from './lookup'
 import { Project } from './project'
 
+// TODO: annotations
 export function activate(context: ExtensionContext) {
 
-	// NOTE: will need to re-run a lot of this each time the workspace changes
-
-	// TEMP DEBUG
+	// Debug
 	console.log('Zope Extension is now active.')
 
-	// TEST NLS
-	//let localize = nls.config({locale: 'en-GB'})();
-	// NOTE: using vscode-nls-dev package but not too much deocumentation for how to get this working
+	// Initialise Project
+	Project.init(context)
 
-	// TEST REGISTERED
-	console.log(`workspace is registered: ${Project.exists(context)}`)
-	// NOTE: need to make this accessible to the viewsWelcome when conditions
+	// NOTE: this needs to happen on workspace change
+	const project = Project.load('')
+	// NOTE: need to pass current directory
 
-	// TEST PROJECT
-	let project = Project.exists(context) ? new Project(context) : null
-	// NOTE: will need to create project initially and also change each time the workspace changes
-	if(project != null) console.log(`data = ${project.toString()}`)
+	// Debug
+	console.log(`workspace is registered: ${project.exists()}`)
+	console.log(`data = ${project.toString()}`)
 
 	// Active Status
 	commands.executeCommand('setContext', 'zope-active', project != null)
-	// NOTE: this seems too late (but it's not saying it doesn't exist at all) when it checks :/
 
 	// Command: Register
 	context.subscriptions.push(commands.registerCommand('zope.register', () => {
-		if(project != null) {
+
+		// Already Registered
+		if(project.exists()) {
 			window.showErrorMessage('This directory has already been registered as a Zope project!')
-			return;
+			return
 		}
-		window.showInformationMessage('Registered this directory as a Zope project!')
-		console.log('Project registered')
-		project = Project.create(context)
+
+		// Register Project
+		project.register()
 		commands.executeCommand('setContext', 'zope-active', true)
+		window.showInformationMessage('Registered this directory as a Zope project!')
+
+		// Debug
+		console.log('Project registered')
 		console.log(`data = ${project.toString()}`)
 	}))
 
 	// Command: Lookup
 	context.subscriptions.push(commands.registerCommand('zope.lookup', () => {
-		if(project == null) {
+
+		// Unregistered Project
+		if(!project.exists()) {
 			window.showErrorMessage('The folder currently open isn\'t marked as a Zope project.\n[Register Project](command:zope.register)')
-			//window.showErrorMessage(localize('%view.workbench.zope-view.unregistered-folder%', '??'))
-			// NOTE: could make use of %view.workbench.zope-view.unregistered-folder%
-			return;
+			return
 		}
+
+		// Debug
 		console.log('Lookup routine')
 		// NOTE: need to operate this on current selection
 		//       could be appended to existing Peek Definition stuff or done separately?
@@ -59,10 +62,17 @@ export function activate(context: ExtensionContext) {
 
 	// Listener: Document Change
 	window.onDidChangeVisibleTextEditors((editorList: TextEditor[]) => {
+
+		// NOTE: need to check only newly opened editors here
+
+		// Iterate Editors
 		editorList.forEach((it: TextEditor) => {
+
+			// No Change
 			const doc = it.document
-			// NOTE: need to exit early if this is not a new document
-			if(doc.isUntitled || !doc.lineCount || doc.languageId != 'plaintext') return;
+			if(doc.isUntitled || !doc.lineCount || doc.languageId != 'plaintext') return
+
+			// Parse Line
 			const firstLine = doc.lineAt(0).text
 
 			// Detect Python
@@ -78,4 +88,5 @@ export function activate(context: ExtensionContext) {
 	})
 }
 
+// TODO: annotations
 export function deactivate() {}
