@@ -5,12 +5,12 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"bugs": {
-	  "url": "https://github.com/CraicOverflow89/vsc-zope/issues"
+		"url": "https://github.com/CraicOverflow89/vsc-zope/issues"
 	},
 	"homepage": "https://github.com/CraicOverflow89/vsc-zope",
 	"repository": {
-	  "type": "git",
-	  "url": "https://github.com/CraicOverflow89/vsc-zope"
+		"type": "git",
+		"url": "https://github.com/CraicOverflow89/vsc-zope"
 	},
 	"publisher": "CraicOverflow89",
 	"icon": "media/icons/logo.png",
@@ -18,7 +18,10 @@
 		"vscode": "^1.46.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages"
+	],
+	"keywords": [
+		"dtml", "zope"
 	],
 	"activationEvents": [
 		"onCommand:zope.lookup",
@@ -37,6 +40,22 @@
 				"title": "Register Project"
 			}
 		],
+        "grammars": [
+            {
+                "language": "dtml",
+                "scopeName": "source.dtml",
+                "path": "./syntaxes/dtml.tmLanguage.json"
+            }
+        ],
+		"languages": [
+            {
+                "id": "dtml",
+                "aliases": [
+                    "DTML"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
 		"views": {
 			"zope-explorer": [
 				{

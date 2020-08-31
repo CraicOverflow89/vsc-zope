@@ -2,7 +2,11 @@ import { commands, ExtensionContext, languages, TextEditor, window } from 'vscod
 import { LookupProvider } from './lookup'
 import { Project } from './project'
 
-// TODO: annotations
+/**
+ * Activates the extension
+ *
+ * @param context The extension context
+ */
 export function activate(context: ExtensionContext) {
 
 	// Debug
@@ -63,8 +67,7 @@ export function activate(context: ExtensionContext) {
 	}))
 
 	// Definition: Lookup
-	languages.registerDefinitionProvider({scheme: 'file', language: 'plaintext'}, new LookupProvider())
-	// NOTE: will language need to be changed to dtml (if recognition does this automatically)?
+	languages.registerDefinitionProvider({scheme: 'file', language: 'dtml'}, new LookupProvider())
 
 	// Listener: Document Change
 	window.onDidChangeVisibleTextEditors((editorList: TextEditor[]) => {
@@ -78,21 +81,24 @@ export function activate(context: ExtensionContext) {
 			const doc = it.document
 			if(doc.isUntitled || !doc.lineCount || doc.languageId != 'plaintext') return
 
-			// Parse Line
+			// Update Language
 			const firstLine = doc.lineAt(0).text
+			languages.setTextDocumentLanguage(doc, (() => {
 
-			// Detect Python
-			if(firstLine.startsWith("## Script (Python)")) {
-				languages.setTextDocumentLanguage(doc, 'python')
-			}
-
-			// Detect SQL
-			else if(firstLine.startsWith("<params>")) {
-				languages.setTextDocumentLanguage(doc, 'sql')
-			}
+				// Detect Python
+				if(firstLine.startsWith("## Script (Python)")) return 'python'
+	
+				// Detect SQL
+				else if(firstLine.startsWith("<params>")) return 'sql'
+	
+				// Default DTML
+				return 'dtml'
+			})())
 		})
 	})
 }
 
-// TODO: annotations
+/**
+ * Deactivates the extension
+ */
 export function deactivate() {}

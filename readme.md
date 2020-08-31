@@ -18,7 +18,6 @@ Please do! PRs welcome at the [github repo](https://github.com/CraicOverflow89/v
 ### Tasks
 
  - maintain the tree view with project files organised around type
- - import the dtml language description (will need to be set for files with no extension)
  - test registration of directory when using workspaces
  - add command to determine where file is in hierachy when using references that look them up
     - continue work with the `LookupProvider` that points to result when _peek definition_ is used
