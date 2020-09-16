@@ -11,6 +11,7 @@ export function activate(context: ExtensionContext) {
 
 	// Debug
 	console.log('Zope Extension is now active.')
+	// TODO: remove this when done (or only print when in debug mode?)
 
 	// Context Status
 	const contextUpdate = (isActive: boolean) => {
@@ -20,14 +21,15 @@ export function activate(context: ExtensionContext) {
 	// Initialise Project
 	Project.init(context)
 
-	// NOTE: this needs to happen on workspace change
+	// TODO: this needs to happen on workspace change
 	//       although this whole activate method IS being called again on workspace change
 	const project = Project.load('')
-	// NOTE: need to pass current directory
+	// TODO: need to pass current directory
 
 	// Debug
 	console.log(`workspace is registered: ${project.exists()}`)
 	console.log(`data = ${project.toString()}`)
+	// TODO: remove this when done (or only print when in debug mode?)
 
 	// Active Status
 	contextUpdate(project.exists())
@@ -49,6 +51,7 @@ export function activate(context: ExtensionContext) {
 		// Debug
 		console.log('Project registered')
 		console.log(`data = ${project.toString()}`)
+		// TODO: remove this when done (or only print when in debug mode?)
 	}))
 
 	// Command: Lookup
@@ -62,8 +65,9 @@ export function activate(context: ExtensionContext) {
 
 		// Debug
 		console.log('Lookup routine')
-		// NOTE: need to operate this on current selection
+		// TODO: need to operate this on current selection
 		//       could be appended to existing Peek Definition stuff or done separately?
+		// TODO: remove this when done (or only print when in debug mode?)
 	}))
 
 	// Definition: Lookup
@@ -72,7 +76,7 @@ export function activate(context: ExtensionContext) {
 	// Listener: Document Change
 	window.onDidChangeVisibleTextEditors((editorList: TextEditor[]) => {
 
-		// NOTE: need to check only newly opened editors here
+		// TODO: need to check only newly opened editors here
 
 		// Iterate Editors
 		editorList.forEach((it: TextEditor) => {

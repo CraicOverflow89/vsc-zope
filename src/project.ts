@@ -70,6 +70,7 @@ export class Project {
         const invalidData = (value: any) => {
             // TODO: handle corrupt data
             console.error('Corrupt workspace data.', value)
+            // TODO: remove this when done (or only print when in debug mode?)
             return false
         }
         if(typeof data != "object") return invalidData(data)
